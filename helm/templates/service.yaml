@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: traveltrack
+  namespace: traveltrack
+spec:
+  type: {{ .Values.service.type }}
+  selector:
+    app: traveltrack
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.port }}
+      protocol: TCP
+      name: http
