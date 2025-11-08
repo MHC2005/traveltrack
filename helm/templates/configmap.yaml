@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: traveltrack-config
+  namespace: traveltrack
+data:
+  APP_VERSION: {{ .Values.config.appVersion | quote }}
+  APP_ENV: {{ .Values.config.environment | quote }}
+  APP_MODE: {{ .Values.config.mode | quote }}
+  PORT: {{ .Values.service.port | quote }}

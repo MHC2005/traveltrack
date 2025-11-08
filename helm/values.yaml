@@ -19,3 +19,5 @@ resources:
 
 config:
   appVersion: "1.0.0"
+  environment: "dev"
+  mode: "api"
