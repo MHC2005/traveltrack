@@ -139,4 +139,20 @@ Notas
 - Roadmap sugerido: agregar pruebas automatizadas, autenticacion/autorizacion y observabilidad avanzada.
 
 
+## Seguridad DevSecOps
+
+Durante el desarrollo se aplicaron varias herramientas de seguridad, cubriendo tanto el código, como la imagen Docker, los manifiestos de Kubernetes y la ejecución en tiempo real del servicio.  
+Todo lo generado se guarda dentro de la carpeta `/reports`.
+
+| Etapa | Herramienta | Qué hace | Archivo / evidencia |
+|--------|-------------|----------|----------------------|
+| **Dependencias** | `npm audit` | Escanea los paquetes instalados y muestra vulnerabilidades conocidas. | `reports/npm-audit.txt` |
+| **Código fuente (SAST)** | `Semgrep` | Revisa el código buscando malas prácticas o patrones inseguros. | `reports/semgrep.json` |
+| **Imagen Docker (SCA)** | `Trivy` | Escanea la imagen para detectar CVEs en las capas del sistema y dependencias. | `reports/trivy-report.json` |
+| **Optimización de imagen** | `Dive` | Muestra tamaño, capas y posibles mejoras de la imagen final. | `reports/image-analysis.md` |
+| **Políticas en Kubernetes** | `Kyverno` | Aplica reglas que bloquean imágenes con `latest`, contenedores root y pods sin límites de recursos. | `k8s/policies/*.yaml` |
+| **Validación de manifiestos** | `KubeLinter` | Analiza los YAML y sugiere configuraciones seguras o buenas prácticas. | `reports/kubelinter.txt` |
+| **Tiempo de ejecución (RASP)** | `Falco` | Monitorea el cluster en tiempo real y detecta acciones sospechosas. Por ejemplo, abrir una shell dentro de un contenedor. | `reports/falco-event.log` |
+
+
 Desarrollado por Mateo Hernández y Agustín Pose

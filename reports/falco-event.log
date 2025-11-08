@@ -1,0 +1,26 @@
+● falco-modern-bpf.service - Falco: Container Native Runtime Security with modern ebpf
+     Loaded: loaded (/lib/systemd/system/falco-modern-bpf.service; enabled; vendor preset: enabled)
+     Active: active (running) since Sat 2025-11-08 23:01:06 UTC; 10min ago
+       Docs: https://falco.org/docs/
+   Main PID: 16191 (falco)
+      Tasks: 28 (limit: 9229)
+     Memory: 84.5M
+        CPU: 17.076s
+     CGroup: /system.slice/falco-modern-bpf.service
+             └─16191 /usr/bin/falco -o engine.kind=modern_ebpf
+
+Nov 08 23:01:06 minikube falco[16191]:    /etc/falco/falco_rules.yaml | schema validation: ok
+Nov 08 23:01:06 minikube falco[16191]:    /etc/falco/falco_rules.local.yaml | schema validation: none
+Nov 08 23:01:06 minikube falco[16191]: The chosen syscall buffer dimension is: 8388608 bytes (8 MBs)
+Nov 08 23:01:06 minikube falco[16191]: Starting health webserver with threadiness 12, listening on 0.0.0.0:8765
+Nov 08 23:01:06 minikube falco[16191]: Loaded event sources: syscall
+Nov 08 23:01:06 minikube falco[16191]: Enabled event sources: syscall
+Nov 08 23:01:06 minikube falco[16191]: Opening 'syscall' source with modern BPF probe.
+Nov 08 23:01:06 minikube falco[16191]: One ring buffer every '2' CPUs.
+Nov 08 23:01:06 minikube falco[16191]: [libs]: Trying to open the right engine!
+
+
+
+#COMO NO ESTABA DEJANDO MANDAR SOLO UNA LINEA, ENVIAMOS TODO EL systemctl status falco#
+
+Nov 08 23:05:49 minikube falco[16191]: 23:05:49.524683930: Notice A shell was spawned in a container with an attached terminal | evt_type=execve user=<NA> user_uid=1000 user_loginuid=-1 process=sh proc_exepath=/bin/busybox parent=runc command=sh terminal=34816 exe_flags=EXE_LOWER_LAYER container_id=70a718e578ea container_name=k8s_test_falco-test_default_de14ce69-abdb-4750-9075-8e702dc892b7_0 container_image_repository=alpine container_image_tag=3.19 k8s_pod_name=falco-test k8s_ns_name=default
