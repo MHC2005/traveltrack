@@ -31,3 +31,11 @@ spec:
           securityContext:
             runAsUser: 1000
             runAsNonRoot: true
+            allowPrivilegeEscalation: false
+
+
+#semgrep --config=p/owasp-top-ten --json: 
+#Se corrigió la alerta detectada por Semgrep relacionada con la posible escalación de privilegios.
+#Se añadió la directiva allowPrivilegeEscalation: false al bloque securityContext del contenedor principal.
+#Esto garantiza que ningún proceso dentro del contenedor pueda elevar privilegios, 
+#alineándose con las prácticas recomendadas de seguridad de Kubernetes y OWASP.

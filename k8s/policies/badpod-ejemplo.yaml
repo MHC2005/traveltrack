@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: badpod
+spec:
+  containers:
+    - name: test
+      image: nginx:latest
+
+
+# kubectl apply -f k8s\policies\badpod-ejemplo.yaml

@@ -1,10 +1,19 @@
 require('dotenv').config();
+const APP_VERSION = process.env.APP_VERSION || '1.0.0';
+const APP_ENV = process.env.APP_ENV || 'dev';
+const APP_MODE = process.env.APP_MODE || 'api';
+const PORT = Number(process.env.PORT) || 3000;
+
 const express = require('express');
 const helmet = require('helmet');
 
 const app = express();
 app.use(helmet());
 app.use(express.json());
+app.use((req, _res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl}`);
+  next();
+});
 
 let seq = 1;
 const requests = [];
@@ -33,8 +42,12 @@ app.patch('/api/travel-requests/:id/approve', (req, res) => {
 });
 
 app.get('/api/version', (_req, res) => {
-  res.json({ version: process.env.APP_VERSION || '0.1.0' });
+  res.json({ version: APP_VERSION,
+              environment: APP_ENV,
+              mode: APP_MODE,
+  });
 });
 
-const PORT = Number(process.env.PORT) || 3000;
-app.listen(PORT, () => console.log(`TravelTrack API escuchando en puerto ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`TravelTrack API v${APP_VERSION} (${APP_ENV}/${APP_MODE}) escuchando en puerto ${PORT}`);
+});
